@@ -154,4 +154,9 @@ public class ImplMetier implements IMetier{
 		return dao.listeCite();
 	}
 
+	@Override
+	public Chambre getchambre(int idchambre) {
+		return dao.getchambre(idchambre);
+	}
+
 }

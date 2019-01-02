@@ -34,6 +34,7 @@ public interface IMetier {
 	public void deleteChambre(int idChambre);
 	public List<Chambre> listchambre(int idcite);
 	public void modifierchambre(Chambre ch);
+	public Chambre getchambre(int idchambre);
 	
 	public Possition addPossit(Possition po);
 	public void update(int idPoss);

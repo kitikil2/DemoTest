@@ -12,7 +12,10 @@
 
 <!-- Favicons
     ================================================== -->
-    
+ 
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    -->
 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/resources/img/favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon"  href="<%=request.getContextPath()%>/resources/img/apple-touch-icon.png">
@@ -98,8 +101,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#about" class="page-scroll">About</a></li>
-        <li><a href="#services" class="page-scroll">Services</a></li>
-        <li><a href="#portfolio" class="page-scroll">Projects</a></li>
+        <li><a href="services/cite" class="page-scroll">Cités</a></li>
+        <li><a href="portfolio/connection" class="page-scroll">Connexion</a></li>
         <li><a href="#testimonials" class="page-scroll">Testimonials</a></li>
         <li><a href="#contact" class="page-scroll">Contact</a></li>
       </ul>
@@ -169,6 +172,7 @@
   </div>
 </div>
 <!-- Services Section -->
+<c:if test="${indix=='listecite'}">
 <div id="services">
   <div class="container">
     <div class="section-title">
@@ -182,7 +186,10 @@
         <div class="service-media"> <img alt="" src="<%=request.getContextPath()%>/photoci?idCite=${cite.idCite }" class="img-thumbnail" width="50px"> </div>
         <div class="service-desc">
           <h3>${cite.nomCite}</h3>
-          <p>${cite.descriptionCite} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>${cite.descriptionCite} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             <br><br>
+             <a href="client/visitechambre?idcite=${cite.idCite}" class="btn btn-custom btn-lg page-scroll">Visite les chambre</a>
+          </p>
         </div>
       </div>
      </c:forEach>
@@ -190,164 +197,90 @@
     </div>
   </div>
 </div>
+</c:if>
 <!-- Gallery Section -->
+<c:if test="${indix=='creercompte'}">
 <div id="portfolio">
   <div class="container">
     <div class="section-title">
-      <h2>Our Works</h2>
+      <h2>Réservation</h2>
     </div>
-    <div class="row">
-      <div class="portfolio-items">
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/01-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Lorem Ipsum</h4>
-              </div>
-              <img src="img/portfolio/01-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/02-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Adipiscing Elit</h4>
-              </div>
-              <img src="img/portfolio/02-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/03-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Lorem Ipsum</h4>
-              </div>
-              <img src="img/portfolio/03-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/04-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Lorem Ipsum</h4>
-              </div>
-              <img src="img/portfolio/04-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/05-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Adipiscing Elit</h4>
-              </div>
-              <img src="img/portfolio/05-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/06-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Dolor Sit</h4>
-              </div>
-              <img src="img/portfolio/06-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/07-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Dolor Sit</h4>
-              </div>
-              <img src="img/portfolio/07-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/08-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Lorem Ipsum</h4>
-              </div>
-              <img src="img/portfolio/08-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="img/portfolio/09-large.jpg" title="Project Title" data-lightbox-gallery="gallery1">
-              <div class="hover-text">
-                <h4>Adipiscing Elit</h4>
-              </div>
-              <img src="img/portfolio/09-small.jpg" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
+    <div class="container contact-form">
+            
+              <h1>
+                    Vous etez sur point de faire une réservation de la chambre ... dans la cite ...
+               </h1>
+            <form method="post">
+                <h3>S'inscrirer pour pouvoir reserver une chambre</h3>
+               <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="txtName" class="form-control" placeholder="Your Name *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="txtPhone" class="form-control" placeholder="Your Phone Number *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+       </div>
   </div>
 </div>
+</c:if>
+
 <!-- Testimonials Section -->
+<c:if test="${indix=='listechambre'}">
 <div id="testimonials">
   <div class="container">
     <div class="section-title">
-      <h2>Testimonials</h2>
+       <h2>Les chambre de la cite ${cite.nomCite}</h2>
     </div>
     <div class="row">
+     <c:forEach items="${listechambre}" var="ch">
       <div class="col-md-4">
         <div class="testimonial">
           <div class="testimonial-image"> <img src="img/testimonials/01.jpg" alt=""> </div>
           <div class="testimonial-content">
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."</p>
-            <div class="testimonial-meta"> - John Doe </div>
+            <div class="testimonial-meta"> <h4>Nom chambre :${ch.nomchambre}</h4> </div>
+            <table>
+                      <tr>
+                         <td>
+                             Prix de la chambre :${ch.prix} franCFA
+                         </td>
+                      </tr>
+                      <tr>
+                         <td>
+                           Etat de la chambre :
+                            ${ch.categorie.description}
+                            ${ch.categorie.typeCategorie}
+                         </td>
+                      </tr>
+                      <tr>
+                       <td>
+                         <a href="reservechambre?idchambre=${ch.idChambre}" class="btn btn-primary btn-lg  btn-lg page-scroll">Reserve la chambre</a>
+                       </td>
+                      </tr>
+                   </table>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="testimonial">
-          <div class="testimonial-image"> <img src="img/testimonials/02.jpg" alt=""> </div>
-          <div class="testimonial-content">
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis."</p>
-            <div class="testimonial-meta"> - Johnathan Doe </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="testimonial">
-          <div class="testimonial-image"> <img src="img/testimonials/03.jpg" alt=""> </div>
-          <div class="testimonial-content">
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."</p>
-            <div class="testimonial-meta"> - John Doe </div>
-          </div>
-        </div>
-      </div>
-      <div class="row"> </div>
-      <div class="col-md-4">
-        <div class="testimonial">
-          <div class="testimonial-image"> <img src="img/testimonials/04.jpg" alt=""> </div>
-          <div class="testimonial-content">
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."</p>
-            <div class="testimonial-meta"> - Johnathan Doe </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="testimonial">
-          <div class="testimonial-image"> <img src="img/testimonials/05.jpg" alt=""> </div>
-          <div class="testimonial-content">
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."</p>
-            <div class="testimonial-meta"> - John Doe </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="testimonial">
-          <div class="testimonial-image"> <img src="img/testimonials/06.jpg" alt=""> </div>
-          <div class="testimonial-content">
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis."</p>
-            <div class="testimonial-meta"> - Johnathan Doe </div>
-          </div>
-        </div>
-      </div>
+      </c:forEach>
     </div>
   </div>
 </div>
+</c:if>
 <!-- Contact Section -->
 <div id="contact">
   <div class="container">

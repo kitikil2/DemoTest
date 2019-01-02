@@ -179,4 +179,10 @@ public class ImplDAOProprietaire implements IDAOProprietaire {
 		return req.getResultList();
 	}
 
+	@Override
+	public Chambre getchambre(int idchambre) {
+		Chambre ch=em.find(Chambre.class, idchambre);
+		return ch;
+	}
+
 }
