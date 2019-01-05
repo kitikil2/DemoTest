@@ -22,7 +22,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,64 +37,47 @@ public class ControllersP {
 	
 	@RequestMapping(value="/index")
 	public String index(Model model){
-		model.addAttribute("login", new Authentification());
+		model.addAttribute("logins", new Authentification());
 		model.addAttribute("proprietaire", new ProprietaireForm());
 		return "index";
 	}
 	
-	@RequestMapping(value="/saveProp")
-	public String saveprop(ProprietaireForm pf,Model model){
-	     if (!pf.getNomProprietaire().isEmpty()) {
-			if (!pf.getPrenomProprietaire().isEmpty()) {
-				if (!pf.getLogin().isEmpty()) {
-					if (!pf.getNumeroCni().isEmpty()) {
-						if (!pf.getPassword().isEmpty()) {
-							if (!pf.getAdresseEmail().isEmpty()) {
-								Proprietaire p=metier.addprop(new Proprietaire(pf.getNomProprietaire(),
-										pf.getPrenomProprietaire(), pf.getSexeProprietaire(), pf.getAdresseEmail(),
-										pf.getNumeroCni(),pf.getStatuSocial()));
-							    metier.addPassword(new Authentification(pf.getLogin(), pf.getPassword()), p.getIdProprietaire());
-							    model.addAttribute("proprietaires", p);
-							    model.addAttribute("proprio", model.asMap().get("proprietaires"));
-							} else {
-								model.addAttribute("proprietaire", new ProprietaireForm());
-                                model.addAttribute("erreur", "Le mail ne doit pas etre vide"); 
-                                return "index";
-							}
-						} else {
-							model.addAttribute("proprietaire", new ProprietaireForm());
-							model.addAttribute("erreur", "Le mot de passe ne doit pas etre vide"); 
-							return "index";
-						}
-					} else {
-						model.addAttribute("proprietaire", new ProprietaireForm());
-						model.addAttribute("erreur", "Le numero de votre cate national ne dooit pas etre vide");
-						return "index";
-					}
-				} else {
-					model.addAttribute("proprietaire", new ProprietaireForm());
-					model.addAttribute("erreur", "Le login ne doit pas etre vide");
-					return "index";
+	@RequestMapping(value="/saveProp" , method=RequestMethod.POST)
+	public String saveprop(@ModelAttribute("proprietaire")  @Valid ProprietaireForm pf,BindingResult bindingResult,
+			Model model) throws IOException{
+		if (bindingResult.hasErrors()) {
+					model.addAttribute("logins", new Authentification());
+				    return "index";
 				}
-			}
+		List<Proprietaire> ps=metier.getProprietaire(pf.getNumeroCni());
+		if (ps!=null) {
+			model.addAttribute("erreur", "Verifier votre numero de CNI");
+			model.addAttribute("proprios", pf);
+			model.addAttribute("logins", new Authentification());
+		    return "index";
 		}else {
-			model.addAttribute("proprietaire", new ProprietaireForm());
-			model.addAttribute("erreur", "Le nom ne doit pas etre vide"); 
-			return "index";
+			Proprietaire p=metier.addprop(new Proprietaire(pf.getNomProprietaire(),
+					pf.getPrenomProprietaire(), pf.getSexeProprietaire(), pf.getAdresseEmail(),
+					pf.getNumeroCni(),pf.getStatuSocial()));
+		    metier.addPassword(new Authentification(pf.getLogin(), pf.getPassword()), p.getIdProprietaire());
+		    model.addAttribute("proprietaires", p);
+		    model.addAttribute("cite", new Cite());
+		    model.addAttribute("proprio", model.asMap().get("proprietaires"));
 		}
 		return "accueil";
 	}
 	
-	@RequestMapping(value="/login")
-	public String login(Authentification au,Model model) {
-		if (au.getLogin().isEmpty()||au.getPassword().isEmpty()) {
-			model.addAttribute("login", new Authentification());
+	@RequestMapping(value="/logins", method=RequestMethod.POST)
+	public String login(@ModelAttribute("logins") @Valid Authentification au, BindingResult bindingResult,Model model) {
+		
+		if (bindingResult.hasErrors()) {
 			model.addAttribute("proprietaire", new ProprietaireForm());
 			return "index";
 		}
+		
 		Proprietaire p=metier.findCompte(au.getLogin(), au.getPassword());
 		if (p==null) {
-			model.addAttribute("login", new Authentification());
+			model.addAttribute("logins", new Authentification());
 			model.addAttribute("proprietaire", new ProprietaireForm());
 			return "index";
 		}
@@ -117,7 +102,6 @@ public class ControllersP {
 	public String savecite(@Valid Cite c,BindingResult bindingResult,Model model,MultipartFile file) throws IOException {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("possition", metier.listPoss());
-			model.addAttribute("cite", new Cite());
 			model.addAttribute("proprio", model.asMap().get("proprietaires"));
 			return "accueil";
 		}
@@ -166,7 +150,16 @@ public class ControllersP {
 	}
 	
     @RequestMapping(value="/addchambre")
-	public String gestionchambre(Chambre ch,Model model) {
+	public String gestionchambre(@Valid Chambre ch,BindingResult bindingResult,Model model) {
+    	if (bindingResult.hasErrors()) {
+    		model.addAttribute("config", "congif");
+    		model.addAttribute("indique", "listecite");
+    		model.addAttribute("singlcite", metier.getCite(ch.getCite().getIdCite()));
+    	    Proprietaire p=(Proprietaire) model.asMap().get("proprietaires");
+    		model.addAttribute("proprio", model.asMap().get("proprietaires"));
+    		model.addAttribute("listecite",metier.listeCite(p.getIdProprietaire()));
+    		return "categorie";
+		}
 		Cite ci=metier.getCite(ch.getCite().getIdCite());
 		for (int i = 0; i < ci.getNombreChambre(); i++) {
 			metier.addChambre(new Chambre(ch.getNomchambre()+(i+1), ch.getPrix(), null), ch.getCite().getIdCite());
@@ -211,8 +204,12 @@ public class ControllersP {
 		Proprietaire p=(Proprietaire) model.asMap().get("proprietaires");
 	    model.addAttribute("proprio", model.asMap().get("proprietaires"));
 		model.addAttribute("listecite",metier.listeCite(p.getIdProprietaire()));
-    	
-    	
+    	return "categorie";
+	}
+    
+    @RequestMapping(value="/listechamcite")
+    public String listechamcite(int idcite,Model model) {
+    	model.addAttribute("indique", "listechacite");
 		return "categorie";
 	}
 }

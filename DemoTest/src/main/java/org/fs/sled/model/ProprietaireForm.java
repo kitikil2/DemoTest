@@ -1,14 +1,25 @@
 package org.fs.sled.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class ProprietaireForm {
+	@NotEmpty
 	private String nomProprietaire;
 	private String prenomProprietaire;
 	private String sexeProprietaire;
+	@Email
 	private String adresseEmail;
+	@NotEmpty
 	private String numeroCni;
 	private String statuSocial;
+	@NotBlank
 	private String login;
+	@Size(min = 6, max = 30)
 	private String password;
 	public String getNomProprietaire() {
 		return nomProprietaire;

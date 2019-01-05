@@ -159,4 +159,9 @@ public class ImplMetier implements IMetier{
 		return dao.getchambre(idchambre);
 	}
 
+	@Override
+	public List<Proprietaire> getProprietaire(String numcni) {
+		return dao.getProprietaire(numcni);
+	}
+
 }

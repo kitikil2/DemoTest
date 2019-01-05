@@ -1,17 +1,49 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
+<title>LOCATION</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Favicons
+    ================================================== -->
+ 
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    -->
+
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/resources/img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon"  href="<%=request.getContextPath()%>/resources/img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="<%=request.getContextPath()%>/resources/img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="<%=request.getContextPath()%>/resources/img/apple-touch-icon-114x114.png">
+
+<!-- Bootstrap -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/bootstrap.css">
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/bootstrap-theme.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/bootstrap-theme.min.css">
-<meta charset="UTF-8">
-
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/fonts/font-awesome/css/font-awesome.css">
 <script src="<%=request.getContextPath()%>/resources/js/bootstrap.js"></script>
-  <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+<!-- Stylesheet
+
+    ================================================== -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/nivo-lightbox/nivo-lightbox.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/nivo-lightbox/default.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+
+
+<!-- Style  -->
+
 <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
@@ -45,48 +77,54 @@
       .row.content {height:auto;} 
     }
   </style>
-<meta charset="UTF-8">
-<title>Gestiondes eleves</title>
- <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-
-
-
-<nav class="navbar navbar-inverse" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="#">Brand</a>
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+  <div class="container"> 
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a class="navbar-brand page-scroll" href="#page-top">Location</a>
+      <div class="phone"><span>Call Today</span>320-123-4321</div>
+    </div>
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <f:form modelAttribute="logins" action="logins" method="post">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li>
+           <a>
+            ${proprio.nomProprietaire}
+           </a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-toggle" >Deconnection</a>
+          </li>
+        
+      </ul>
+    </div>
+  </f:form>
+    
+    <!-- /.navbar-collapse --> 
   </div>
+</nav>  
 
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Accueil</a></li>
-      <li><a href="#">Notification</a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Deconnection <b class="caret"></b></a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">${proprio.nomProprietaire}</a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Deconnection <b class="caret"></b></a>
-      </li>
-    </ul>
-  </div><!-- /.navbar-collapse -->
-</nav>
-  
+
+
+<div id="about">
+<div class="container"> 
 <div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-2 sidenav">
+    <div class="col-xs-12 col-md-1 sidenav">
       <p>Configure les chambre<br>
          <c:forEach items="${listecite}" var="ci">
              <ul>
@@ -101,50 +139,91 @@
       <p><a href="#">Liste des chambre disponible</a></p>
     </div>
 
-   <div class="col-sm-8 text-left"> 
+   <div class="col-lg-4 col-sm-8 col-xs-10"> 
       <div class="container" style="margin-top: 1em;">
     <!-- Sign up form -->
-     <div class="container">
-     <div>
-      <c:if test="${config=='congif'}">
-       <f:form modelAttribute="chambre" action="addchambre" method="post">
-         <table>
-            <tr>Crée un model de chambre</tr>
-            <tr>
-              <td>ID cite</td>
-              <td><f:input path="cite.idCite" value="${singlcite.idCite}" readonly="readonly"/></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Nom la chambre (Motif)</td>
-              <td><f:input path="nomchambre"/></td>
-              <td><f:errors path="nomchambre" cssClass=""></f:errors></td>
-            </tr>
-            <tr>
-              <td>Prix chambre</td>
-              <td><f:input path="prix"/></td>
-              <td><f:errors path="prix"></f:errors></td>
-            </tr>
-            <tr>
-              <td>Nom de cite</td>
-              <td><input type="text" name="nomcite" value="${singlcite.nomCite}" readonly="readonly"/></td>
-              <td></td>
-            </tr>
-            
-            <tr>
-              <td></td>
-              <td><input type="submit" value="Valider"/></td>
-              <td></td>
-            </tr>
-         </table>
-        </f:form>
-       </c:if>
-       <c:if test="${config=='su'}">
-           <h1 class="text-danger">veuillez configurer les standarts de vos chambre</h1>
-       </c:if>
+    
+    
+    
+    <c:if test="${config=='congif'}">
+    <div class="row">
+      <div class="col-xs-12 col-md-3"> <img src="img/about.jpg" class="img-responsive" alt=""> </div>
+      <div class="col-xs-12 col-md-8">
+        <div class="about-text">
+          <h2>Etez-vous proprietaire d'une cite. Inscrivez-vous</h2>
+          <h3>${erreur}</h3>
+          
+          <f:form modelAttribute="chambre" action="addchambre" method="post" class="col-lg-15">
+          <div class="list-style">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+              <ul>
+                <li> Identifiant de la cité :
+                        <f:input path="cite.idCite" value="${singlcite.idCite}" readonly="readonly" class="form-control"  />
+                </li>
+                <li>Nom la chambre (Motif) : 
+                        <f:input path="nomchambre" class="form-control"/>
+                        <f:errors path="nomchambre" cssClass="errors" class="text-danger"></f:errors>
+                
+                </li>
+                
+              </ul>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+              <ul>
+                <li>Prix de la chambre : 
+                        <f:input path="prix" class="form-control"/>
+                        <f:errors path="prix" cssClass="errors" class="text-danger"></f:errors>
+                
+                </li>
+                <li>Nom de cite :
+                        <input type="text" name="nomcite" value="${singlcite.nomCite}" readonly="readonly"/>
+                
+                </li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-md-12 text-center">
+            <ul>
+              <li>
+                 <input type="submit" class="btn btn-custom btn-lg page-scroll" value="Envoyer">
+              </li>
+            </ul>
+            </div>
+          </div>
+          
+ 
+     </f:form>     
+      
+        </div>
+      </div>
+    </div>
+     </c:if>
+    
      </div>
      
-   
+     
+ <div id="services">
+  <div class="container">
+    <div class="section">
+      <h2>La liste de vos cité</h2>
+    </div>
+    <div class="row">       
+     <c:forEach items="${listecite}" var="cite" >  
+      <div class="col-md-4">
+        <div class="service-media"> <img alt="" src="<%=request.getContextPath()%>/photoci?idCite=${cite.idCite }" class="img-thumbnail" width="50px"> </div>
+        <div class="service-desc">
+          <h3>${cite.nomCite}</h3>
+          <p>${cite.descriptionCite}
+             <br><br>
+             <a href="configue?idcite=${cite.idCite}" class="btn btn-custom btn-lg page-scroll">Ajouter les chambres</a>
+          </p>
+        </div>
+      </div>
+     </c:forEach>
+      
+    </div>
+  </div>
+</div>
+     
    <div class="container-fluid">
      <c:if test="${indique=='listecite'}">
         <table >
@@ -164,16 +243,21 @@
            </c:forEach>
         </table>
       </c:if>
-      <c:if test="${indique=='listechambre'}">
       
-         <header class="page-header">
-                 <h2>Vous etez entrain de modifier les parametre de la ${singlcite.nomCite}</h2>
-          </header>
-         
-       <c:forEach items="${listechambre}" var="lch">
-        <div class="row">
-        <f:form modelAttribute="chambre" action="modifierchambre" method="">
-           <div class="col-md-6 d-flex align-items-center bd-highlight mb-3">
+      <c:if test="${indique=='listechambre'}">
+      <div id="testimonials">
+  <div class="container">
+    <div class="section-title">
+       <h2>Vous etez entrain de modifier les parametre de la ${singlcite.nomCite}</h2>
+    </div>
+    <div class="row">
+     <c:forEach items="${listechambre}" var="lch">
+      <div class="col-md-4">
+        <div class="testimonial">
+          <div class="testimonial-content">
+            <div class="testimonial-meta"> <h4>Nom chambre :${lch.nomchambre}</h4> </div>
+            <f:form modelAttribute="chambre" action="modifierchambre" method="">
+            
              <table class="table table-condensed">
                 <tr>
                   <td>ID cite</td>
@@ -192,10 +276,8 @@
                   <td><f:input path="prix" value="${lch.prix}"/> </td>
                 </tr>
             </table>
-           </div>
-           <div class="col-md-6">
-               
-               <f:select path="categorie.idCategorie">
+            
+            <f:select path="categorie.idCategorie">
                          <c:forEach items="${listecategorie}" var="lca">
                                <f:option value="${lca.idCategorie}">${lca.description} et ${lca.typeCategorie}</f:option>
                          </c:forEach>
@@ -204,13 +286,16 @@
                 <c:if test="${lch.categorie!=null }">
                     <h5>Chambre configure</h5>
                 </c:if>
-           </div>
-         </f:form>
+            
+            </f:form>
+          </div>
         </div>
-       </c:forEach>
-      
-        
-      </c:if>
+      </div>
+      </c:forEach>
+    </div>
+  </div>
+</div>
+  </c:if>    
    </div>
    
    </div>
@@ -218,17 +303,18 @@
      </div>
     </div>
    
-   <div class="col-sm-2 sidenav">
+   <!-- <div class="col-sm-2 sidenav">
       <div class="well">
         <p>ADS</p>
       </div>
       <div class="well">
         <p>ADS</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
-
+</div>
+</div>
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>

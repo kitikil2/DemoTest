@@ -16,6 +16,7 @@ public interface IMetier {
 	public void delete(int idProp);
 	public int getProprietaire(String numCNI,String nomP);
 	public Proprietaire getProprietaire(int idprop);
+	public List<Proprietaire> getProprietaire(String numcni);
 	
 	public void addPassword(Authentification a,int idProp);
 	public void updatePassword(int idAuthent);

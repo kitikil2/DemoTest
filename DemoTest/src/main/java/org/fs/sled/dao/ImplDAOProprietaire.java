@@ -185,4 +185,11 @@ public class ImplDAOProprietaire implements IDAOProprietaire {
 		return ch;
 	}
 
+	@Override
+	public List<Proprietaire> getProprietaire(String numcni) {
+		Query req=em.createQuery("select p from Proprietaire p where p.numeroCni=:idprop");
+		req.setParameter("idprop",numcni);
+		return  req.getResultList();
+	}
+
 }
