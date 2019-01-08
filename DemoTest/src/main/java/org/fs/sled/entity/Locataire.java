@@ -24,7 +24,7 @@ public class Locataire {
 	@Email
 	private String adresseEmail;
 	@NotEmpty
-	private String Numerocni;
+	private String numerocni;
 	private String statuSocial;
 	@ManyToOne
 	@JoinColumn(name="IDCITE")
@@ -45,7 +45,7 @@ public class Locataire {
 		this.prenomLocataire = prenomLocataire;
 		this.sexelocataire = sexelocataire;
 		this.adresseEmail = adresseEmail;
-		Numerocni = numerocni;
+		this.numerocni = numerocni;
 		this.statuSocial = statuSocial;
 	}
 	public int getIdLocataire() {
@@ -79,10 +79,10 @@ public class Locataire {
 		this.adresseEmail = adresseEmail;
 	}
 	public String getNumerocni() {
-		return Numerocni;
+		return numerocni;
 	}
 	public void setNumerocni(String numerocni) {
-		Numerocni = numerocni;
+		this.numerocni = numerocni;
 	}
 	public String getStatuSocial() {
 		return statuSocial;

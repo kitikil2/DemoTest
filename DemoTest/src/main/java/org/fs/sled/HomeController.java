@@ -44,7 +44,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/client/visitechambre")
-	public String visiteclient(int idcite, Model model){
+	public String visiteclient(@RequestParam int idcite, Model model){
 		List<Chambre> chs=metier.listchambre(idcite);
 		List<Chambre> chams=new ArrayList<Chambre>();
 		for (Chambre cha : chs) {
@@ -54,6 +54,7 @@ public class HomeController {
 				}
 			}
 		}
+		model.addAttribute("logins", new Authentification());
 		model.addAttribute("indix", "listechambre");
 		model.addAttribute("cite", metier.getCite(idcite));
 		model.addAttribute("listechambre", chams);

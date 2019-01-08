@@ -1,5 +1,6 @@
 package org.fs.sled.metier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.fs.sled.dao.IDAOProprietaire;
@@ -188,6 +189,36 @@ public class ImplMetier implements IMetier{
 	@Override
 	public Locataire findComptelocataire(String login, String pass) {
 		return dao.findComptelocataire(login, pass);
+	}
+
+	@Override
+	public int notification(Proprietaire p) {
+		int note=0;
+		List<Cite> cites=dao.listeCite(p.getIdProprietaire());
+		for (Cite cite : cites) {
+			List<Chambre> ch=dao.listchambre(cite.getIdCite());
+			for (Chambre chambre : ch) {
+				if (chambre.getLocataire()!=null && chambre.getPhotos()==null) {
+					note=note+1;
+				}
+			}
+		}
+		return note;
+	}
+
+	@Override
+	public List<Chambre> notifications(Proprietaire p) {
+		List<Chambre> chs=new ArrayList<Chambre>();
+		List<Cite> cites=dao.listeCite(p.getIdProprietaire());
+		for (Cite cite : cites) {
+			List<Chambre> ch=dao.listchambre(cite.getIdCite());
+			for (Chambre chambre : ch) {
+				if (chambre.getLocataire()!=null && chambre.getPhotos()==null) {
+					chs.add(chambre);
+				}
+			}
+		}
+		return chs;
 	}
 
 }

@@ -1,5 +1,6 @@
 package org.fs.sled.metier;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.fs.sled.entity.Authentification;
@@ -51,5 +52,7 @@ public interface IMetier {
 	public Locataire updatelocataire(Locataire l);
 	public Locataire getlocataire(int idloca);
 	public List<Locataire> getlocataire(String numcni);
+	public int notification(Proprietaire p);
+	public List<Chambre> notifications(Proprietaire p);
 	
 }

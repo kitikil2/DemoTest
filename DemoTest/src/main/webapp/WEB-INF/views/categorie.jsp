@@ -100,7 +100,12 @@
     <f:form modelAttribute="logins" action="logins" method="post">
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        
+          <li>
+             <a href="notifications?idpro=${proprio.idProprietaire}">
+              <span class="text-danger">${notification}</span>
+                 Notification
+            </a>
+          </li>
           <li>
            <a>
             ${proprio.nomProprietaire}
@@ -136,7 +141,7 @@
       </p>
       <p><a href="">Liste vos cite</a></p>
       <p><a href="#">Liste vos locataire</a></p>
-      <p><a href="#">Liste des chambre disponible</a></p>
+      <p><a href="ajoutercite">Ajouter une cite</a></p>
     </div>
 
    <div class="col-lg-4 col-sm-8 col-xs-10"> 
@@ -200,6 +205,57 @@
     
      </div>
      
+    <c:if test="${indique=='noti'}">
+    
+    
+    <div id="portfolio">
+  <div class="container">
+    <div class="section-title">
+      <h2>Accueil</h2>
+    </div>
+    
+    <div class="container contact-form"> 
+       <c:forEach items="${chambres}" var="ch">  
+         
+       <div class="col-md-4">
+        <div class="service-desc">
+          <h3>Information du locataire</h3>
+          <h4>Mm/Mr :${ch.locataire.nomLocataire } ${ch.locataire.prenomLocataire} </h4>
+          <p>Adresse mail :${ch.locataire.adresseEmail }
+             <br><br>
+             Numero de CNI :${ch.locataire.numerocni }
+          </p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="service-desc">
+          <h3>Information de sa cité</h3>
+          <h3>${ch.cite.nomCite } </h3>
+          <p>
+             
+          </p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="service-desc">
+          <h3>Information de la chambre</h3>
+          <h4>Nom chambre :${ch.nomchambre } </h4>
+          <p>Prix de la chambre :${ch.prix} Fcfa
+             <br><br>
+            <h4 class="text-danger"> Somme totale à verser :${ch.prix*10 } Fcfa</h4>
+          </p>
+        </div>
+      </div>
+     </c:forEach> 
+       </div>
+  </div>
+</div>
+    
+    
+    </c:if>
+    
      
  <div id="services">
   <div class="container">

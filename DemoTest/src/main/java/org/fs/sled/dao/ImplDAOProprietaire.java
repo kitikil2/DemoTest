@@ -145,14 +145,14 @@ public class ImplDAOProprietaire implements IDAOProprietaire {
 
 	@Override
 	public Proprietaire getProprietaire(int idprop) {
-		Query req=em.createQuery("select p from Proprietaire p where p.IdProprietaire=:idprop");
+		Query req=em.createQuery("select p from Proprietaire p where p.idProprietaire=:idprop");
 		req.setParameter("idprop",idprop);
 		return (Proprietaire) req.getSingleResult();
 	}
 
 	@Override
 	public List<Cite> listeCite(int idpro) {
-		Query req=em.createQuery("select ci from Cite ci where ci.proprietaire.IdProprietaire=:idprop");
+		Query req=em.createQuery("select ci from Cite ci where ci.proprietaire.idProprietaire=:idprop");
 		req.setParameter("idprop",idpro);
 		return req.getResultList();
 	}

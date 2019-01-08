@@ -13,7 +13,6 @@ import org.fs.sled.entity.Authentification;
 import org.fs.sled.entity.CategorieChambre;
 import org.fs.sled.entity.Chambre;
 import org.fs.sled.entity.Cite;
-import org.fs.sled.entity.Possition;
 import org.fs.sled.entity.Proprietaire;
 import org.fs.sled.metier.IMetier;
 import org.fs.sled.model.ProprietaireForm;
@@ -25,6 +24,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -61,6 +61,7 @@ public class ControllersP {
 					pf.getNumeroCni(),pf.getStatuSocial()));
 		    metier.addPassword(new Authentification(pf.getLogin(), pf.getPassword()), p.getIdProprietaire());
 		    model.addAttribute("proprietaires", p);
+		    model.addAttribute("notification", metier.notification(p));
 		    model.addAttribute("cite", new Cite());
 		    model.addAttribute("proprio", model.asMap().get("proprietaires"));
 		}
@@ -86,12 +87,14 @@ public class ControllersP {
 			model.addAttribute("possition", metier.listPoss());
 			model.addAttribute("cite", new Cite());
 			model.addAttribute("proprietaires", p);
+			model.addAttribute("notification", metier.notification(p));
 			model.addAttribute("proprio", model.asMap().get("proprietaires"));
 			return "accueil";
 		}
 		model.addAttribute("indique", "listecite");
 		model.addAttribute("chambre", new Chambre());
 		model.addAttribute("proprietaires", p);
+		model.addAttribute("notification", metier.notification(p));
 		model.addAttribute("proprio", model.asMap().get("proprietaires"));
 		model.addAttribute("listecite",metier.listeCite(p.getIdProprietaire()) );
 		
@@ -122,7 +125,9 @@ public class ControllersP {
 			model.addAttribute("proprietaires", pro);
 			model.addAttribute("cites",pro );
 		}
+		Proprietaire p=(Proprietaire) model.asMap().get("proprietaires");
 		model.addAttribute("proprio", model.asMap().get("proprietaires"));
+		model.addAttribute("notification", metier.notification(p));
 		return "categorie";
 	}
 	
@@ -142,6 +147,7 @@ public class ControllersP {
 		model.addAttribute("indique", "listecite");
 		model.addAttribute("singlcite", metier.getCite(idcite));
 	    Proprietaire p=(Proprietaire) model.asMap().get("proprietaires");
+	    model.addAttribute("notification", metier.notification(p));
 		model.addAttribute("proprio", model.asMap().get("proprietaires"));
 		model.addAttribute("listecite",metier.listeCite(p.getIdProprietaire()));
 		
@@ -156,6 +162,7 @@ public class ControllersP {
     		model.addAttribute("indique", "listecite");
     		model.addAttribute("singlcite", metier.getCite(ch.getCite().getIdCite()));
     	    Proprietaire p=(Proprietaire) model.asMap().get("proprietaires");
+    	    model.addAttribute("notification", metier.notification(p));
     		model.addAttribute("proprio", model.asMap().get("proprietaires"));
     		model.addAttribute("listecite",metier.listeCite(p.getIdProprietaire()));
     		return "categorie";
@@ -167,6 +174,7 @@ public class ControllersP {
 		model.addAttribute("config", "su");
 		model.addAttribute("indique", "listecite");
 		Proprietaire p=(Proprietaire) model.asMap().get("proprietaires");
+		model.addAttribute("notification", metier.notification(p));
 	    model.addAttribute("proprio", model.asMap().get("proprietaires"));
 		model.addAttribute("listecite",metier.listeCite(p.getIdProprietaire()));
 		return "categorie";
@@ -183,6 +191,7 @@ public class ControllersP {
     	model.addAttribute("singlcite", metier.getCite(idcite));
     	
 		Proprietaire p=(Proprietaire) model.asMap().get("proprietaires");
+		model.addAttribute("notification", metier.notification(p));
 	    model.addAttribute("proprio", model.asMap().get("proprietaires"));
 		model.addAttribute("listecite",metier.listeCite(p.getIdProprietaire()));
 		return "categorie";
@@ -202,6 +211,7 @@ public class ControllersP {
     	model.addAttribute("singlcite", metier.getCite(ch.getCite().getIdCite()));
     	
 		Proprietaire p=(Proprietaire) model.asMap().get("proprietaires");
+		model.addAttribute("notification", metier.notification(p));
 	    model.addAttribute("proprio", model.asMap().get("proprietaires"));
 		model.addAttribute("listecite",metier.listeCite(p.getIdProprietaire()));
     	return "categorie";
@@ -212,4 +222,28 @@ public class ControllersP {
     	model.addAttribute("indique", "listechacite");
 		return "categorie";
 	}
+    
+    @RequestMapping(value="/notifications")
+    public String notification(@RequestParam int idpro,Model model){
+    	model.addAttribute("indique", "noti");
+    	Proprietaire p=(Proprietaire) model.asMap().get("proprietaires");
+    	List<Chambre> chs=metier.notifications(p);
+    	model.addAttribute("chambres", chs);
+		model.addAttribute("notification", metier.notification(p));
+		model.addAttribute("lnotification", chs);
+	    model.addAttribute("proprio", model.asMap().get("proprietaires"));
+		model.addAttribute("listecite",metier.listeCite(p.getIdProprietaire()));
+    	return "categorie";
+    }
+    
+    @RequestMapping(value="/ajoutercite")
+    public String savecite(Model model){
+    	Proprietaire p=(Proprietaire) model.asMap().get("proprietaires");
+    	model.addAttribute("possition", metier.listPoss());
+		model.addAttribute("cite", new Cite());
+		model.addAttribute("proprietaires", p);
+		model.addAttribute("notification", metier.notification(p));
+		model.addAttribute("proprio", model.asMap().get("proprietaires"));
+		return "accueil";
+    }
 }

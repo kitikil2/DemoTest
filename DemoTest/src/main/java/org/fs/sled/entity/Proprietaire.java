@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 public class Proprietaire {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int IdProprietaire;
+	private int idProprietaire;
 	private String nomProprietaire;
 	private String prenomProprietaire;
 	private String sexeProprietaire;
@@ -38,10 +38,10 @@ public class Proprietaire {
 		this.statuSocial = statuSocial;
 	}
 	public int getIdProprietaire() {
-		return IdProprietaire;
+		return idProprietaire;
 	}
 	public void setIdProprietaire(int idProprietaire) {
-		IdProprietaire = idProprietaire;
+		this.idProprietaire = idProprietaire;
 	}
 	public String getNomProprietaire() {
 		return nomProprietaire;
