@@ -1,6 +1,6 @@
 package org.fs.sled.entity;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +20,7 @@ public class Proprietaire {
 	private String numeroCni;
 	private String statuSocial;
 	@OneToMany(mappedBy="proprietaire")
-	private Collection<Cite> cites;
+	private List<Cite> cites;
 	@OneToOne(mappedBy="proprietaire")
 	private Authentification authentification;
 	public Proprietaire() {
@@ -28,13 +28,13 @@ public class Proprietaire {
 		// TODO Auto-generated constructor stub
 	}
 	public Proprietaire(String nomProprietaire, String prenomProprietaire, String sexeProprietaire, String adresseEmail,
-			String numerocni, String statuSocial) {
+			String numeroCni, String statuSocial) {
 		super();
 		this.nomProprietaire = nomProprietaire;
 		this.prenomProprietaire = prenomProprietaire;
 		this.sexeProprietaire = sexeProprietaire;
 		this.adresseEmail = adresseEmail;
-		this.numeroCni = numerocni;
+		this.numeroCni = numeroCni;
 		this.statuSocial = statuSocial;
 	}
 	public int getIdProprietaire() {
@@ -67,11 +67,11 @@ public class Proprietaire {
 	public void setAdresseEmail(String adresseEmail) {
 		this.adresseEmail = adresseEmail;
 	}
-	public String getNumerocni() {
+	public String getNumeroCni() {
 		return numeroCni;
 	}
-	public void setNumerocni(String numerocni) {
-		numeroCni = numerocni;
+	public void setNumeroCni(String numeroCni) {
+		this.numeroCni = numeroCni;
 	}
 	public String getStatuSocial() {
 		return statuSocial;
@@ -79,10 +79,10 @@ public class Proprietaire {
 	public void setStatuSocial(String statuSocial) {
 		this.statuSocial = statuSocial;
 	}
-	public Collection<Cite> getCites() {
+	public List<Cite> getCites() {
 		return cites;
 	}
-	public void setCites(Collection<Cite> cites) {
+	public void setCites(List<Cite> cites) {
 		this.cites = cites;
 	}
 	public Authentification getAuthentification() {

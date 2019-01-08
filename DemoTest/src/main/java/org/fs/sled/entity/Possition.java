@@ -1,6 +1,6 @@
 package org.fs.sled.entity;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +15,16 @@ public class Possition {
 	private String quartier;
 	private float distince;
 	@OneToMany(mappedBy="possition")
-	private Collection<Cite> cites;
+	private List<Cite> cites;
+	public Possition() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Possition(String quartier, float distince) {
+		super();
+		this.quartier = quartier;
+		this.distince = distince;
+	}
 	public int getIdpossition() {
 		return idpossition;
 	}
@@ -34,20 +43,11 @@ public class Possition {
 	public void setDistince(float distince) {
 		this.distince = distince;
 	}
-	public Collection<Cite> getCites() {
+	public List<Cite> getCites() {
 		return cites;
 	}
-	public void setCites(Collection<Cite> cites) {
+	public void setCites(List<Cite> cites) {
 		this.cites = cites;
 	}
-	public Possition(String quartier, float distince) {
-		super();
-		this.quartier = quartier;
-		this.distince = distince;
-	}
-	public Possition() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
+	
 }

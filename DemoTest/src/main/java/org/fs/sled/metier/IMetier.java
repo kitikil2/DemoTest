@@ -6,6 +6,7 @@ import org.fs.sled.entity.Authentification;
 import org.fs.sled.entity.CategorieChambre;
 import org.fs.sled.entity.Chambre;
 import org.fs.sled.entity.Cite;
+import org.fs.sled.entity.Locataire;
 import org.fs.sled.entity.Possition;
 import org.fs.sled.entity.Proprietaire;
 
@@ -21,6 +22,7 @@ public interface IMetier {
 	public void addPassword(Authentification a,int idProp);
 	public void updatePassword(int idAuthent);
 	public Proprietaire findCompte(String login,String pass);
+	public Locataire findComptelocataire(String login,String pass);
 
 	
 	public int addCite(Cite ci,int idPoss);
@@ -44,5 +46,10 @@ public interface IMetier {
 	public CategorieChambre addCategorie(CategorieChambre ca);
 	public List<CategorieChambre> listecategorie();
 	public CategorieChambre getcategorie(int idcat);
+	
+	public Locataire addLocataire(Locataire l);
+	public Locataire updatelocataire(Locataire l);
+	public Locataire getlocataire(int idloca);
+	public List<Locataire> getlocataire(String numcni);
 	
 }

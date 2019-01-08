@@ -1,6 +1,7 @@
 package org.fs.sled.entity;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class CategorieChambre {
 	@NotEmpty
 	private String typeCategorie;
 	@OneToMany(mappedBy="categorie")
-	private Collection<Chambre> chambres;
+	private List<Chambre> chambres;
 	public CategorieChambre() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -47,10 +48,10 @@ public class CategorieChambre {
 	public void setTypeCategorie(String typeCategorie) {
 		this.typeCategorie = typeCategorie;
 	}
-	public Collection<Chambre> getChambres() {
+	public List<Chambre> getChambres() {
 		return chambres;
 	}
-	public void setChambres(Collection<Chambre> chambres) {
+	public void setChambres(List<Chambre> chambres) {
 		this.chambres = chambres;
 	}
 	

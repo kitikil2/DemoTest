@@ -7,6 +7,7 @@ import org.fs.sled.entity.Authentification;
 import org.fs.sled.entity.CategorieChambre;
 import org.fs.sled.entity.Chambre;
 import org.fs.sled.entity.Cite;
+import org.fs.sled.entity.Locataire;
 import org.fs.sled.entity.Possition;
 import org.fs.sled.entity.Proprietaire;
 import org.springframework.transaction.annotation.Transactional;
@@ -162,6 +163,31 @@ public class ImplMetier implements IMetier{
 	@Override
 	public List<Proprietaire> getProprietaire(String numcni) {
 		return dao.getProprietaire(numcni);
+	}
+
+	@Override
+	public Locataire addLocataire(Locataire l) {
+		return dao.addLocataire(l);
+	}
+
+	@Override
+	public Locataire updatelocataire(Locataire l) {
+		return dao.updatelocataire(l);
+	}
+
+	@Override
+	public Locataire getlocataire(int idloca) {
+		return dao.getlocataire(idloca);
+	}
+
+	@Override
+	public List<Locataire> getlocataire(String numcni) {
+		return dao.getlocataire(numcni);
+	}
+
+	@Override
+	public Locataire findComptelocataire(String login, String pass) {
+		return dao.findComptelocataire(login, pass);
 	}
 
 }

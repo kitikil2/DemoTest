@@ -9,6 +9,7 @@ import org.fs.sled.entity.Authentification;
 import org.fs.sled.entity.CategorieChambre;
 import org.fs.sled.entity.Chambre;
 import org.fs.sled.entity.Cite;
+import org.fs.sled.entity.Locataire;
 import org.fs.sled.entity.Possition;
 import org.fs.sled.entity.Proprietaire;
 
@@ -190,6 +191,41 @@ public class ImplDAOProprietaire implements IDAOProprietaire {
 		Query req=em.createQuery("select p from Proprietaire p where p.numeroCni=:idprop");
 		req.setParameter("idprop",numcni);
 		return  req.getResultList();
+	}
+
+	@Override
+	public Locataire getlocataire(int idloca) {
+		Query req=em.createQuery("select l from Locataire l where l.IdLocataire=:idprop");
+		req.setParameter("idprop",idloca);
+		return  (Locataire) req.getSingleResult();
+	}
+
+	@Override
+	public Locataire addLocataire(Locataire l) {
+		em.persist(l);
+		return l;
+	}
+
+	@Override
+	public Locataire updatelocataire(Locataire l) {
+		em.merge(l);
+		return l;
+	}
+
+	@Override
+	public List<Locataire> getlocataire(String numcni) {
+		Query req=em.createQuery("select l from Locataire l where l.Numerocni=:idprop");
+		req.setParameter("idprop",numcni);
+		return  req.getResultList();
+	}
+
+	@Override
+	public Locataire findComptelocataire(String login, String pass) {
+		Query req=em.createQuery("select au from Authentification au where au.login=:login and au.password=:pass");
+		req.setParameter("login",login);
+		req.setParameter("pass", pass);
+		Authentification au=(Authentification) req.getSingleResult();
+		return au.getLocataire();
 	}
 
 }

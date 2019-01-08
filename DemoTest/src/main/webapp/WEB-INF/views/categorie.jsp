@@ -225,7 +225,7 @@
 </div>
      
    <div class="container-fluid">
-     <c:if test="${indique=='listecite'}">
+     <%-- <c:if test="${indique=='listecite'}">
         <table >
            <tr>
              <td>Nom de la cite</td><td>Nombre de chambre</td><td>Description</td><td>Photo de la cite</td>
@@ -242,7 +242,7 @@
               </tr>
            </c:forEach>
         </table>
-      </c:if>
+      </c:if> --%>
       
       <c:if test="${indique=='listechambre'}">
       <div id="testimonials">
@@ -272,7 +272,7 @@
                   <td><f:input path="nomchambre" value="${lch.nomchambre}" readonly="readonly"/> </td>
                 </tr>
                 <tr>
-                  <td>Nom chambre :</td>
+                  <td>Prix chambre :</td>
                   <td><f:input path="prix" value="${lch.prix}"/> </td>
                 </tr>
             </table>

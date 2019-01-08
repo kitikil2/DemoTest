@@ -99,13 +99,38 @@
     
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
+      <!-- <ul class="nav navbar-nav navbar-right">
         <li><a href="#about" class="page-scroll">About</a></li>
-        <li><a href="services/cite" class="page-scroll">Cités</a></li>
+        <li><a href="#services/cite" class="page-scroll">Cités</a></li>
         <li><a href="portfolio/connection" class="page-scroll">Connexion</a></li>
         <li><a href="#testimonials" class="page-scroll">Testimonials</a></li>
-        <li><a href="#contact" class="page-scroll">Contact</a></li>
+        <li><a href="#contact" class="page-scroll">Contact</a></li> -->
+        
+  <f:form modelAttribute="logins" action="client/logins" method="post">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li>
+            <f:errors path="login" cssClass="errors" class="text-danger"></f:errors>
+        </li>
+        <li>
+            <label class="sr-only">Login</label>
+            <f:input path="login" type="text" class="form-control"  placeholder="login"/>
+        </li>
+        <li>
+           <label class="sr-only" for="exampleInputPassword2">Password</label>
+           <f:input path="password" type="text" class="form-control" placeholder="Password"/>
+        </li>
+        <li>
+           <li>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+           </li>
       </ul>
+    </div>
+  </f:form>
+        
+        
+    <!--   </ul> -->
     </div>
     <!-- /.navbar-collapse --> 
   </div>
@@ -139,38 +164,92 @@
   </div>
 </div>
 <!-- About Section -->
+<c:if test="${indix=='creercompte'}">
 <div id="about">
   <div class="container">
+    <div class="section-title">
+      <h2>Réservation</h2>
+    </div>
     <div class="row">
-      <div class="col-xs-12 col-md-6"> <img src="img/about.jpg" class="img-responsive" alt=""> </div>
-      <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-md-2"> <img src="img/about.jpg" class="img-responsive" alt=""> </div>
+      <div class="col-xs-12 col-md-10">
         <div class="about-text">
-          <h2>Who We Are</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <h3>Why Choose Us?</h3>
+          <h2>Vous etez sur point de faire une réservation de la chambre ${chambre.nomchambre } dans la cite ${chambre.cite.nomCite }</h2>
+          <br>
+          <h3>S'inscrirer pour pouvoir reserver une chambre </h3>
+          <h3>${erreur}</h3>
+          <f:form modelAttribute="proprietaire" action="saveclient" method="post" class="col-lg-15">
           <div class="list-style">
             <div class="col-lg-6 col-sm-6 col-xs-12">
               <ul>
-                <li>Years of Experience</li>
-                <li>Fully Insured</li>
-                <li>Cost Control Experts</li>
-                <li>100% Satisfaction Guarantee</li>
+                <li> Nom :
+                        <f:input path="nomProprietaire" value="${proprios.nomProprietaire }" class="form-control"  />
+                        <f:errors path="nomProprietaire" cssClass="errors" class="text-danger"></f:errors>
+                </li>
+                <li>Prenom : 
+                        <f:input path="prenomProprietaire" class="form-control" value="${proprios.prenomProprietaire }"/>
+                        <f:errors path="prenomProprietaire" cssClass="errors" class="text-danger"></f:errors>
+                
+                </li>
+                <li> Sexe :
+                        <f:select path="sexeProprietaire" class="form-control">
+                               <f:option value="homme">homme</f:option>
+                               <f:option value="femme">femme</f:option>
+                        </f:select>
+                
+                </li>
+                <li>Adresse mail :
+                        <f:input path="adresseEmail" class="form-control" value="${proprios.adresseEmail }"/>
+                        <f:errors path="adresseEmail" cssClass="errors" class="text-danger"></f:errors>
+                
+                </li>
               </ul>
             </div>
             <div class="col-lg-6 col-sm-6 col-xs-12">
               <ul>
-                <li>Free Consultation</li>
-                <li>Satisfied Customers</li>
-                <li>Project Management</li>
-                <li>Affordable Pricing</li>
+                <li>Numero de la carte national d'identite : 
+                        <f:input path="numeroCni" class="form-control"/>
+                        <f:errors path="numeroCni" cssClass="errors" class="text-danger"></f:errors>
+                
+                </li>
+                <li>Statu social :
+                        <f:select path="statuSocial" class="form-control">
+                           <f:option value="Celibataire">Celibataire</f:option>
+                           <f:option value="marie">marie</f:option>
+                        </f:select>
+                
+                </li>
+                <li>login : 
+                        <f:input path="login" class="form-control"/>
+                        <f:errors path="login" cssClass="errors" class="text-danger"></f:errors>
+                
+                </li>
+                <li>Mot de passe : 
+                        <f:input path="password" class="form-control"/>
+                        <f:errors path="password" cssClass="errors" class="text-danger"></f:errors>
+                
+                </li>
               </ul>
             </div>
+            <div class="col-xs-12 col-md-12 text-center">
+            <ul>
+              <li>
+                 <input type="submit" class="btn btn-custom btn-lg page-scroll" value="Envoyer">
+              </li>
+            </ul>
+            </div>
           </div>
+          
+          
+     </f:form>     
+          
         </div>
       </div>
     </div>
   </div>
 </div>
+</c:if>
+
 <!-- Services Section -->
 <c:if test="${indix=='listecite'}">
 <div id="services">
@@ -199,46 +278,7 @@
 </div>
 </c:if>
 <!-- Gallery Section -->
-<c:if test="${indix=='creercompte'}">
-<div id="portfolio">
-  <div class="container">
-    <div class="section-title">
-      <h2>Réservation</h2>
-    </div>
-    
-    <div class="container contact-form">
-            
-              <h1>
-                    Vous etez sur point de faire une réservation de la chambre ... dans la cite ...
-               </h1>
-            <form method="post">
-                <h3>S'inscrirer pour pouvoir reserver une chambre</h3>
-               <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input type="text" name="txtName" class="form-control" placeholder="Your Name *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="txtPhone" class="form-control" placeholder="Your Phone Number *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </form>
-       </div>
-  </div>
-</div>
-</c:if>
+
 
 <!-- Testimonials Section -->
 <c:if test="${indix=='listechambre'}">

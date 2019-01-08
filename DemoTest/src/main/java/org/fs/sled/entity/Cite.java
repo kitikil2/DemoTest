@@ -1,6 +1,6 @@
 package org.fs.sled.entity;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,9 +26,9 @@ public class Cite {
 	@JoinColumn(name="IDPROPRIETAIRE")
 	private Proprietaire proprietaire;
 	@OneToMany(mappedBy="cite")
-	private Collection<Locataire> locataires;
+	private List<Locataire> locataires;
 	@OneToMany(mappedBy="cite")
-	private Collection<Chambre> chambres;
+	private List<Chambre> chambres;
 	@ManyToOne
 	@JoinColumn(name="IDPOSSITION")
 	private Possition possition;
@@ -79,16 +79,16 @@ public class Cite {
 	public void setProprietaire(Proprietaire proprietaire) {
 		this.proprietaire = proprietaire;
 	}
-	public Collection<Locataire> getLocataires() {
+	public List<Locataire> getLocataires() {
 		return locataires;
 	}
-	public void setLocataires(Collection<Locataire> locataires) {
+	public void setLocataires(List<Locataire> locataires) {
 		this.locataires = locataires;
 	}
-	public Collection<Chambre> getChambres() {
+	public List<Chambre> getChambres() {
 		return chambres;
 	}
-	public void setChambres(Collection<Chambre> chambres) {
+	public void setChambres(List<Chambre> chambres) {
 		this.chambres = chambres;
 	}
 	public Possition getPossition() {
@@ -97,6 +97,5 @@ public class Cite {
 	public void setPossition(Possition possition) {
 		this.possition = possition;
 	}
-	
 	
 }
